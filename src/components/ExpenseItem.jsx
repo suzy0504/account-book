@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import styled from "styled-components";
+import { ExpensesContext } from "../context/ExpensesContext";
 
 const ListButton = styled.button`
   margin: 0 0 10px 0;
@@ -43,7 +45,7 @@ const ExpenseItem = ({ expense }) => {
         <TextBox>
           <DateBox>{expense.date}</DateBox>
           <HistoryBox>
-            {expense.item}-{expense.description}
+            {expense.item} - {expense.description}
           </HistoryBox>
         </TextBox>
         <span>{expense.amount.toLocaleString()}원</span>

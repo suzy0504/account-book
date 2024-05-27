@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { ExpensesContext } from "../context/ExpensesContext";
 
 const FormBox = styled.div`
   background-color: #be6674;
@@ -41,7 +42,9 @@ const ButtonStyle = styled.button`
   }
 `;
 
-const ExpenseForm = ({ setExpenses }) => {
+const ExpenseForm = () => {
+  const { setExpenses } = useContext(ExpensesContext);
+
   const onSubmit = (e) => {
     e.preventDefault();
 

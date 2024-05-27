@@ -18,12 +18,7 @@ const Button = styled.button`
   }
 `;
 
-const DetailHomeBtn = ({
-  detailExpense,
-  setExpenses,
-  expenses,
-  saveHandle,
-}) => {
+const DetailHomeBtn = ({ detailExpense, saveHandle }) => {
   const navigate = useNavigate();
 
   const backBtn = () => {

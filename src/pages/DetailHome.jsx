@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import DetailHomeBtn from "../components/DetailHomeBtn";
+import { ExpensesContext } from "../context/ExpensesContext";
 
 const DetailBox = styled.div`
   background-color: #be6674;
@@ -22,7 +23,9 @@ const DetailSmallBox = styled.div`
   flex-direction: column;
 `;
 
-const DetailHome = ({ expenses, setExpenses }) => {
+const DetailHome = () => {
+  const { expenses, setExpenses } = useContext(ExpensesContext);
+
   const param = useParams();
 
   const detailExpense = expenses.find((expense) => expense.id === param.id);
@@ -94,12 +97,7 @@ const DetailHome = ({ expenses, setExpenses }) => {
         />
       </DetailSmallBox>
       <div>
-        <DetailHomeBtn
-          detailExpense={detailExpense}
-          expenses={expenses}
-          setExpenses={setExpenses}
-          saveHandle={saveHandle}
-        />
+        <DetailHomeBtn detailExpense={detailExpense} saveHandle={saveHandle} />
       </div>
     </DetailBox>
   );

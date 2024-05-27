@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ExpenseItem from "./ExpenseItem";
 import { Link } from "react-router-dom";
+import { ExpensesContext } from "../context/ExpensesContext";
 
-const ExpenseList = ({ expenses, selectedMonth }) => {
+const ExpenseList = ({ selectedMonth }) => {
   const [filterList, setFilterData] = useState([]);
+  const { expenses } = useContext(ExpensesContext);
 
   useEffect(() => {
     if (selectedMonth) {

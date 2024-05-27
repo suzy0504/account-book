@@ -3,22 +3,19 @@ import Home from "../pages/Home";
 import DetailHome from "../pages/DetailHome";
 import { useState } from "react";
 import dummyData from "../data/dummyData.json";
+import { ExpensesContext } from "../context/ExpensesContext";
 
 const Router = () => {
   const [expenses, setExpenses] = useState(dummyData);
 
   return (
     <BrowserRouter>
-      <Routes>
-        <Route
-          path="/"
-          element={<Home expenses={expenses} setExpenses={setExpenses} />}
-        />
-        <Route
-          path="DetailHome/:id"
-          element={<DetailHome expenses={expenses} setExpenses={setExpenses} />}
-        />
-      </Routes>
+      <ExpensesContext.Provider value={{ expenses, setExpenses }}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="DetailHome/:id" element={<DetailHome />} />
+        </Routes>
+      </ExpensesContext.Provider>
     </BrowserRouter>
   );
 };
