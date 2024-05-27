@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 const MonthBox = styled.div`
   background-color: #bb8c94;
@@ -11,8 +11,7 @@ const MonthBox = styled.div`
   gap: 20px;
 `;
 
-const MonthButton = styled.button`
-  background-color: white;
+const Button = styled.button`
   border-radius: 10px;
   height: 80px;
   width: 110px;
@@ -25,9 +24,21 @@ const MonthButton = styled.button`
     background-color: #be6674;
     color: white;
   }
+
+  ${(props) =>
+    props.isSelected &&
+    css`
+      background-color: #be6674;
+      color: white;
+    `}
 `;
 
-const Month = () => {
+const Month = ({ selectedMonth, setSelectedMonth }) => {
+  const handleMonthClick = (month) => {
+    setSelectedMonth(month);
+    localStorage.setItem("selectedMonth", month);
+  };
+
   return (
     <div>
       <MonthBox>
@@ -45,11 +56,16 @@ const Month = () => {
           "11월",
           "12월",
         ].map((month, index) => (
-          <MonthButton key={index}>{month}</MonthButton>
+          <Button
+            onClick={() => handleMonthClick(month)}
+            key={index}
+            isSelected={selectedMonth === month ? 1 : 0}
+          >
+            {month}
+          </Button>
         ))}
       </MonthBox>
     </div>
   );
 };
-
 export default Month;

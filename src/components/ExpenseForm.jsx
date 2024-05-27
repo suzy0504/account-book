@@ -10,7 +10,38 @@ const FormBox = styled.div`
   padding: 20px;
 `;
 
-const ExpenseForm = ({ setExpense }) => {
+const InputStyle = styled.form`
+  border-radius: 5px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+`;
+
+const InputDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const Input = styled.input`
+  width: 160px;
+  height: 35px;
+`;
+
+const ButtonStyle = styled.button`
+  margin-top: 23px;
+  display: flex;
+  height: 35px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  width: 76px;
+  &:hover {
+    background-color: #741c28;
+    color: white;
+  }
+`;
+
+const ExpenseForm = ({ setExpenses }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
@@ -21,7 +52,10 @@ const ExpenseForm = ({ setExpense }) => {
     const amount = formData.get("amount");
     const description = formData.get("description");
 
-    // if 로 입력창 검증하기
+    if (!date.trim()) return alert("날짜를 입력해주세요");
+    if (!item.trim()) return alert("항목을 입력해주세요");
+    if (!amount.trim()) return alert("금액을 입력해주세요");
+    if (!description.trim()) return alert("내용을 입력해주세요");
 
     const nextExpense = {
       id: crypto.randomUUID(),
@@ -31,26 +65,32 @@ const ExpenseForm = ({ setExpense }) => {
       description,
     };
 
-    setExpense((prevExpenses) => [...prevExpenses, nextExpense]);
-
-    console.log(nextExpense);
+    setExpenses((prevExpenses) => [...prevExpenses, nextExpense]);
 
     e.target.reset();
   };
 
   return (
     <FormBox>
-      <form onSubmit={onSubmit}>
-        날짜
-        <input name="date" type="date" placeholder="YYYY-MM-DD" />
-        항목
-        <input name="item" type="text" />
-        금액
-        <input name="amount" type="number" />
-        내용
-        <input name="description" type="text" />
-        <button type="sumit">저장</button>
-      </form>
+      <InputStyle onSubmit={onSubmit}>
+        <InputDiv>
+          날짜
+          <Input name="date" type="date" placeholder="YYYY-MM-DD" />
+        </InputDiv>
+        <InputDiv>
+          항목
+          <Input name="item" type="text" />
+        </InputDiv>
+        <InputDiv>
+          금액
+          <Input name="amount" type="number" />
+        </InputDiv>
+        <InputDiv>
+          내용
+          <Input name="description" type="text" />
+        </InputDiv>
+        <ButtonStyle type="submit">저장</ButtonStyle>
+      </InputStyle>
     </FormBox>
   );
 };

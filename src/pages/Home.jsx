@@ -11,11 +11,11 @@ const Main = styled.div`
   margin: 0 auto;
 `;
 
-const Home = () => {
+const Home = ({ expenses, setExpenses }) => {
   return (
     <Main>
       {/* <AccountForm /> */}
-      <ExpenseContainer />
+      <ExpenseContainer expenses={expenses} setExpenses={setExpenses} />
     </Main>
   );
 };

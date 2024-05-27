@@ -4,6 +4,9 @@ const GlobalStyle = createGlobalStyle`
     body {
         background-color: #f3e0d1;
         font-family: 'NEXON Lv1 Gothic OTF';  
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
        
 
         @font-face {
@@ -26,7 +29,8 @@ const GlobalStyle = createGlobalStyle`
         font-size: 20px;
         font-family: 'NEXON Lv1 Gothic OTF'; 
     }
-  
+
+    
 `;
 
 export default GlobalStyle;
