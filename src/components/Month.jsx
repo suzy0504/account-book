@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled, { css } from "styled-components";
+import { ExpensesContext } from "../context/ExpensesContext";
 
 const MonthBox = styled.div`
   background-color: #bb8c94;
@@ -33,7 +34,9 @@ const Button = styled.button`
     `}
 `;
 
-const Month = ({ selectedMonth, setSelectedMonth }) => {
+const Month = () => {
+  const { selectedMonth, setSelectedMonth } = useContext(ExpensesContext);
+
   const handleMonthClick = (month) => {
     setSelectedMonth(month);
     localStorage.setItem("selectedMonth", month);

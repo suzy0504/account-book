@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
+import { ExpensesContext } from "../context/ExpensesContext";
 
 const ButtonBox = styled.div`
   width: 800px;
@@ -19,6 +20,7 @@ const Button = styled.button`
 `;
 
 const DetailHomeBtn = ({ detailExpense, saveHandle }) => {
+  const { expenses, setExpenses } = useContext(ExpensesContext);
   const navigate = useNavigate();
 
   const backBtn = () => {

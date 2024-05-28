@@ -3,7 +3,8 @@ import ExpenseItem from "./ExpenseItem";
 import { Link } from "react-router-dom";
 import { ExpensesContext } from "../context/ExpensesContext";
 
-const ExpenseList = ({ selectedMonth }) => {
+const ExpenseList = () => {
+  const { selectedMonth } = useContext(ExpensesContext);
   const [filterList, setFilterData] = useState([]);
   const { expenses } = useContext(ExpensesContext);
 

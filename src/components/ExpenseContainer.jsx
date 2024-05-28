@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ExpenseForm from "./ExpenseForm";
 import ExpenseList from "./ExpenseList";
 import styled from "styled-components";
 import Month from "./Month";
-import { SelectedMonthContext } from "../context/SelectedMonthContext";
+import { ExpensesContext } from "../context/ExpensesContext";
 
 const ItemBox = styled.div`
   background-color: #e8b19d;
@@ -16,19 +16,12 @@ const ItemBox = styled.div`
 `;
 
 const ExpenseContainer = () => {
-  const [selectedMonth, setSelectedMonth] = useState(() => {
-    return localStorage.getItem("selectedMonth") || "1월";
-  });
-
   return (
     <div>
       <ExpenseForm />
-      <Month
-        selectedMonth={selectedMonth}
-        setSelectedMonth={setSelectedMonth}
-      />
+      <Month />
       <ItemBox>
-        <ExpenseList selectedMonth={selectedMonth} />
+        <ExpenseList />
       </ItemBox>
     </div>
   );
