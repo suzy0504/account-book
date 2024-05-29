@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components";
 import { setExpenses } from "../redux/modules/expenses";
 
@@ -44,6 +44,7 @@ const ButtonStyle = styled.button`
 
 const ExpenseForm = () => {
   const dispatch = useDispatch();
+  const expenses = useSelector((state) => state.expenses);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -68,7 +69,7 @@ const ExpenseForm = () => {
       description,
     };
 
-    dispatch(setExpenses(nextExpense));
+    dispatch(setExpenses([...expenses, nextExpense]));
 
     e.target.reset();
   };

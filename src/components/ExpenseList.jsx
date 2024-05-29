@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 
 const ExpenseList = () => {
   const expenses = useSelector((state) => state.expenses);
+  console.log(expenses);
 
   const selectedMonth = useSelector(
     (state) => state.selectedMonth.selectedMonth
