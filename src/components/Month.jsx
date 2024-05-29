@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
 import styled, { css } from "styled-components";
-import { ExpensesContext } from "../context/ExpensesContext";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedMonth } from "../redux/modules/selectedMonth";
 
 const MonthBox = styled.div`
   background-color: #bb8c94;
@@ -35,11 +35,14 @@ const Button = styled.button`
 `;
 
 const Month = () => {
-  const { selectedMonth, setSelectedMonth } = useContext(ExpensesContext);
+  const dispatch = useDispatch();
+
+  const selectedMonth = useSelector(
+    (state) => state.selectedMonth.selectedMonth
+  );
 
   const handleMonthClick = (month) => {
-    setSelectedMonth(month);
-    localStorage.setItem("selectedMonth", month);
+    dispatch(setSelectedMonth(month));
   };
 
   return (

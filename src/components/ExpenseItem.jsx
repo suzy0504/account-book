@@ -1,6 +1,4 @@
-import { useContext } from "react";
 import styled from "styled-components";
-import { ExpensesContext } from "../context/ExpensesContext";
 
 const ListButton = styled.button`
   margin: 0 0 10px 0;

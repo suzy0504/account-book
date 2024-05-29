@@ -1,9 +1,7 @@
-import React, { useContext, useState } from "react";
 import ExpenseForm from "./ExpenseForm";
 import ExpenseList from "./ExpenseList";
 import styled from "styled-components";
 import Month from "./Month";
-import { ExpensesContext } from "../context/ExpensesContext";
 
 const ItemBox = styled.div`
   background-color: #e8b19d;

@@ -1,7 +1,7 @@
-import React, { useContext } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { ExpensesContext } from "../context/ExpensesContext";
+import { setExpenses } from "../redux/modules/expenses";
 
 const ButtonBox = styled.div`
   width: 800px;
@@ -20,7 +20,9 @@ const Button = styled.button`
 `;
 
 const DetailHomeBtn = ({ detailExpense, saveHandle }) => {
-  const { expenses, setExpenses } = useContext(ExpensesContext);
+  const dispatch = useDispatch();
+  const expenses = useSelector((state) => state.expenses);
+
   const navigate = useNavigate();
 
   const backBtn = () => {
@@ -35,7 +37,8 @@ const DetailHomeBtn = ({ detailExpense, saveHandle }) => {
       const newExpenses = expenses.filter(
         (expense) => expense.id !== detailExpense.id
       );
-      setExpenses(newExpenses);
+      dispatch(setExpenses(newExpenses));
+      console.log(newExpenses);
       navigate(-1);
     }
   };

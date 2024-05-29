@@ -1,6 +1,6 @@
-import React, { useContext } from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
-import { ExpensesContext } from "../context/ExpensesContext";
+import { setExpenses } from "../redux/modules/expenses";
 
 const FormBox = styled.div`
   background-color: #be6674;
@@ -43,7 +43,7 @@ const ButtonStyle = styled.button`
 `;
 
 const ExpenseForm = () => {
-  const { setExpenses } = useContext(ExpensesContext);
+  const dispatch = useDispatch();
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -68,7 +68,7 @@ const ExpenseForm = () => {
       description,
     };
 
-    setExpenses((prevExpenses) => [...prevExpenses, nextExpense]);
+    dispatch(setExpenses(nextExpense));
 
     e.target.reset();
   };

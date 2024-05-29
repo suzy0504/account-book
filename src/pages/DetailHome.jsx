@@ -1,8 +1,9 @@
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import DetailHomeBtn from "../components/DetailHomeBtn";
-import { ExpensesContext } from "../context/ExpensesContext";
+import { useDispatch, useSelector } from "react-redux";
+import { setExpenses } from "../redux/modules/expenses";
 
 const DetailBox = styled.div`
   background-color: #be6674;
@@ -24,7 +25,8 @@ const DetailSmallBox = styled.div`
 `;
 
 const DetailHome = () => {
-  const { expenses, setExpenses } = useContext(ExpensesContext);
+  const dispatch = useDispatch();
+  const expenses = useSelector((state) => state.expenses);
 
   const param = useParams();
 
@@ -52,7 +54,9 @@ const DetailHome = () => {
     const newExpenses = expenses.map((expense) =>
       expense.id === detailExpense.id ? editedExpense : expense
     );
-    setExpenses(newExpenses);
+
+    dispatch(setExpenses(newExpenses));
+    console.log(newExpenses);
   };
 
   if (!detailExpense) {
